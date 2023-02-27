@@ -1,4 +1,5 @@
 import 'package:bido/apps/auth/login/login_screen.dart';
+import 'package:bido/apps/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -50,7 +51,7 @@ class AuthNotifier {
         print(" email sign in displayname: ${authCredential.displayName}");
         Navigator.pushReplacement(
           context,
-          BottomTransition(const HomeScreen()),
+          BottomTransition(const MainScreen()),
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -79,7 +80,7 @@ class AuthNotifier {
       print('token from google ${userCredential.user!.uid}');
       Navigator.pushReplacement(
         context,
-        BottomTransition(const HomeScreen()),
+        BottomTransition(const MainScreen()),
       );
       print(" gogle sign in displayname: ${userCredential.user?.displayName}");
     }
