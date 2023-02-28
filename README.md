@@ -15,7 +15,7 @@
 ```
 ## Feature List
 ```
-├── Login & Sign up 
+├── Login & Sign up(Email & Google)
 ├── Logout
 ├── Add Product
 ├── Biding Product
