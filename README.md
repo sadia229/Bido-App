@@ -22,4 +22,4 @@
 ├── Product Details
 ```
 ## APK
-Find the APK File [APK]([https://pages.github.com/](https://drive.google.com/file/d/1PkHvra8bLhBLoLGdKv6prJ9tq6mS-LX8/view?usp=sharing))
+Find the APK File [APK](https://drive.google.com/file/d/1PkHvra8bLhBLoLGdKv6prJ9tq6mS-LX8/view?usp=sharing)
