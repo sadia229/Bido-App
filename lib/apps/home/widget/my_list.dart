@@ -30,7 +30,7 @@ class _MyListState extends State<MyList> {
                 children: [
                   InkWell(
                     onTap: () {},
-                    child: Text("New Offers",
+                    child: Text("My List",
                         textAlign: TextAlign.end, style: KTextStyle.title1),
                   ),
                 ],

@@ -3,6 +3,7 @@ import 'package:bido/widgets/appbar/k_appbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widget/category.dart';
+import '../widget/my_list.dart';
 import '../widget/my_posted_items.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Category(),
               SizedBox(height: 20),
               PostedItems(),
+              NewOffers(),
               MyList()
             ],
           ),

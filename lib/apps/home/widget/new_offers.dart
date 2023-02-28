@@ -5,14 +5,14 @@ import 'package:bido/widgets/card/products_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class MyList extends StatefulWidget {
-  const MyList({Key? key}) : super(key: key);
+class NewOffers extends StatefulWidget {
+  const NewOffers({Key? key}) : super(key: key);
 
   @override
-  State<MyList> createState() => _MyListState();
+  State<NewOffers> createState() => _NewOffersState();
 }
 
-class _MyListState extends State<MyList> {
+class _NewOffersState extends State<NewOffers> {
   final fireStore =
       FirebaseFirestore.instance.collection("new-offer").snapshots();
   SellerProvider sellerProvider = SellerProvider();

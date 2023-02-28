@@ -32,7 +32,7 @@ class _ProductsCardState extends State<ProductsCard> {
       child: Column(
         children: [
           Container(
-            width: context.screenWidth * 0.6,
+            width: context.screenWidth * 0.65,
             margin: const EdgeInsets.symmetric(horizontal: 8),
             child: Card(
               shape: RoundedRectangleBorder(
@@ -63,7 +63,7 @@ class _ProductsCardState extends State<ProductsCard> {
                     const SizedBox(height: 5),
                     Text(widget.description,
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                        maxLines: 1,
                         style: KTextStyle.title6),
                     Text(
                       "${widget.price} TK",
@@ -72,7 +72,7 @@ class _ProductsCardState extends State<ProductsCard> {
                     const SizedBox(height: 5),
                     Text(
                       widget.countDate,
-                      style: KTextStyle.title3,
+                      style: KTextStyle.title6,
                     ),
                   ],
                 ),
