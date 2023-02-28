@@ -1,16 +1,23 @@
-# bido
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Bido App
+## Project Environment
+```
+├── Flutter
+├── Dart
+```
+## Project Packeges
+```
+├── Firebase Packages( Firebase CRUD)
+├── Riverpod(State Management)
+├── shared_preferences(Local DB)
+├── image_picker(Pick a image)
+├── flutter_svg(Ror Svg Picture)
+├── bottom_navy_bar(Bottom Navigationbar)
+```
+## Feature List
+```
+├── Login & Sign up 
+├── Logout
+├── Add Product
+├── Biding Product
+├── Product Details
+```
