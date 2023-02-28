@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Category(),
               SizedBox(height: 20),
               PostedItems(),
-              NewSells()
+              MyList()
             ],
           ),
         ),

@@ -49,6 +49,43 @@ class SellerProvider {
     }
   }
 
+   addMyList(
+      {required String name,
+      required String description,
+      required String price,
+      required String date,
+      required String image,
+      context}) async {
+    try {
+      CollectionReference reference =
+          FirebaseFirestore.instance.collection('my-list');
+      if (image.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Please upload an image'),
+          ),
+        );
+        return;
+      }
+      Map<String, String> dataToSend = {
+        'name': name,
+        'description': description,
+        'price': price,
+        'current-date': date,
+        'image': image,
+      };
+      reference.add(dataToSend);
+      if (dataToSend.isNotEmpty) {
+        Navigator.pushReplacement(
+          context,
+          BottomTransition(const MainScreen()),
+        );
+      }
+    } catch (e) {
+      //toast.toastMsg(msg: "$e");
+    }
+  }
+
   countDate({required String date}) {
     DateTime dob = DateTime.parse(date);
     Duration dur = DateTime.now().difference(dob);

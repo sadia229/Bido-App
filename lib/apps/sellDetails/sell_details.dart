@@ -83,7 +83,7 @@ class _SellDetailsState extends State<SellDetails> {
                     btnWidth: context.screenWidth,
                     btnText: 'Bid',
                     tap: () {
-                      seller.addList(
+                      seller.addMyList(
                         name: widget.name,
                         description: widget.description,
                         price: bidPrice.text,

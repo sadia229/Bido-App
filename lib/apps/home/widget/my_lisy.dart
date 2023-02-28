@@ -4,6 +4,7 @@ import 'package:bido/general/utils/text_style.dart';
 import 'package:bido/widgets/card/products_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MyList extends StatefulWidget {
   const MyList({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class MyList extends StatefulWidget {
 
 class _MyListState extends State<MyList> {
   final fireStore =
-      FirebaseFirestore.instance.collection("new-offer").snapshots();
+      FirebaseFirestore.instance.collection("my-list").snapshots();
   SellerProvider sellerProvider = SellerProvider();
   @override
   Widget build(BuildContext context) {
@@ -62,18 +63,14 @@ class _MyListState extends State<MyList> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     final products = snapshot.data?.docs[index];
-                    DateTime dob =
-                        DateTime.parse(products!["current-date"].toString());
-                    Duration dur = DateTime.now().difference(dob);
-                    String duration =
-                        "${(dur.inDays / 30).floor().toString().replaceAll('-', '')} month ${(dur.inDays / 24).floor().toString().replaceAll('-', '')} days ";
 
                     return ProductsCard(
                       image: products!["image"].toString(),
                       name: products["name"].toString(),
                       description: products["description"].toString(),
                       price: products["price"].toString(),
-                      countDate: duration,
+                      countDate: DateFormat('d MMM y').format(
+                          DateTime.parse(products["current-date"].toString())),
                       tap: () {
                         Navigator.pushNamed(
                           context,
@@ -83,7 +80,7 @@ class _MyListState extends State<MyList> {
                             'name': products["name"].toString(),
                             'description': products["description"].toString(),
                             'priceimg': products["price"].toString(),
-                            'check': false,
+                            'check': true,
                           },
                         );
                       },
