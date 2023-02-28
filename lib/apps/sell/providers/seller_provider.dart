@@ -38,13 +38,24 @@ class SellerProvider {
         'image': image,
       };
       reference.add(dataToSend);
-      Navigator.pushReplacement(
-        context,
-        BottomTransition(const MainScreen()),
-      );
+      if (dataToSend.isNotEmpty) {
+        Navigator.pushReplacement(
+          context,
+          BottomTransition(const MainScreen()),
+        );
+      }
     } catch (e) {
       //toast.toastMsg(msg: "$e");
     }
+  }
+
+  countDate({required String date}) {
+    DateTime dob = DateTime.parse(date);
+    Duration dur = DateTime.now().difference(dob);
+    String duration =
+        "${(dur.inDays / 30).floor().toString().replaceAll('-', '')} month ${(dur.inDays / 24).floor().toString().replaceAll('-', '')} days ";
+    print("$duration duration");
+    print(date);
   }
 
   Future<String> pickDate({context}) async {
@@ -59,7 +70,7 @@ class SellerProvider {
     ).format(f!).toString();
   }
 
-  pickImage({ image}) async {
+  pickImage({image}) async {
     ImagePicker imagePicker = ImagePicker();
     XFile? file = await imagePicker.pickImage(source: ImageSource.camera);
     print('${file?.path}');

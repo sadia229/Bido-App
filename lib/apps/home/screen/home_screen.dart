@@ -1,4 +1,3 @@
-
 import 'package:bido/apps/home/widget/new_offers.dart';
 import 'package:bido/widgets/appbar/k_appbar.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,16 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
           child: KAppBar(),
         ),
         body: SingleChildScrollView(
-            child: Column(
-              children: const [
-                Category(),
-                SizedBox(height: 20),
-                PostedItems(),
-                SizedBox(height: 20),
-                NewSells()
-              ],
-            ),
+          child: Column(
+            children: const [
+              Category(),
+              SizedBox(height: 20),
+              PostedItems(),
+              NewSells()
+            ],
           ),
+        ),
       ),
     );
   }

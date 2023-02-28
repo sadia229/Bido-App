@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:bido/apps/main_screen.dart';
 import 'package:bido/apps/sell/providers/date_provider.dart';
 import 'package:bido/apps/sell/providers/seller_provider.dart';
 import 'package:bido/general/utils/colors.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../general/service/page_transition.dart';
 import '../../widgets/textField/k_textField.dart';
 
 class SellScreen extends ConsumerStatefulWidget {
@@ -38,7 +40,11 @@ class _SellScreenState extends ConsumerState<SellScreen> {
     SellerProvider seller = SellerProvider();
 
     return Scaffold(
-      appBar: AppBar(),
+     appBar: AppBar(
+        elevation: 0,
+        backgroundColor: KColor.primary,
+        title: const Text("Details"),
+      ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -123,6 +129,10 @@ class _SellScreenState extends ConsumerState<SellScreen> {
                         price: bidPrice.text,
                         date: date,
                         image: imageUrl,
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        BottomTransition(const MainScreen()),
                       );
                     }
                   },

@@ -1,5 +1,6 @@
 import 'package:bido/apps/home/screen/home_screen.dart';
 import 'package:bido/apps/sell/sell_screen.dart';
+import 'package:bido/apps/settings/settings_screen.dart';
 import 'package:bido/general/utils/colors.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -26,12 +27,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: const [
-            HomeScreen(),
-            HomeScreen(),
-            SellScreen(),
-            HomeScreen()
-          ],
+          children: const [HomeScreen(), SellScreen(), SettingsScreen()],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
@@ -45,22 +41,17 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         containerHeight: 65,
         items: [
           BottomNavyBarItem(
-            icon: const Icon(CupertinoIcons.circle_grid_3x3, size: 23),
+            icon: const Icon(CupertinoIcons.home, size: 27),
             title: const Text('Home'),
             activeColor: KColor.primary,
           ),
           BottomNavyBarItem(
-            icon: const Icon(CupertinoIcons.tag, size: 25),
-            title: const Text('Bids'),
-            activeColor: KColor.primary,
-          ),
-          BottomNavyBarItem(
-            icon: const Icon(CupertinoIcons.cart, size: 25),
+            icon: const Icon(CupertinoIcons.add, size: 27),
             title: const Text('Sell'),
             activeColor: KColor.primary,
           ),
           BottomNavyBarItem(
-            icon: const Icon(CupertinoIcons.gear_alt_fill, size: 25),
+            icon: const Icon(CupertinoIcons.gear_alt_fill, size: 27),
             title: const Text('Settings'),
             activeColor: KColor.primary,
           ),

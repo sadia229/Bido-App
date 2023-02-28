@@ -1,11 +1,21 @@
+import 'package:bido/apps/sell/providers/seller_provider.dart';
 import 'package:bido/general/utils/config.dart';
 import 'package:bido/general/utils/text_style.dart';
 import 'package:bido/widgets/card/products_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class NewSells extends StatelessWidget {
+class NewSells extends StatefulWidget {
   const NewSells({Key? key}) : super(key: key);
 
+  @override
+  State<NewSells> createState() => _NewSellsState();
+}
+
+class _NewSellsState extends State<NewSells> {
+  final fireStore =
+      FirebaseFirestore.instance.collection("new-offer").snapshots();
+  SellerProvider sellerProvider = SellerProvider();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,19 +43,57 @@ class NewSells extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Container(
-          height: context.screenHeight * 0.37,
-          width: context.screenWidth,
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return ProductsCard();
-            },
-          ),
+        StreamBuilder<QuerySnapshot>(
+          stream: fireStore,
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (!snapshot.hasData) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) return const Text("Something has error");
+            if (snapshot.hasData) {
+              return SizedBox(
+                width: context.screenWidth,
+                height: context.screenHeight * 0.37,
+                child: ListView.builder(
+                  itemCount: snapshot.data!.docs.length,
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    final products = snapshot.data?.docs[index];
+                    DateTime dob =
+                        DateTime.parse(products!["current-date"].toString());
+                    Duration dur = DateTime.now().difference(dob);
+                    String duration =
+                        "${(dur.inDays / 30).floor().toString().replaceAll('-', '')} month ${(dur.inDays / 24).floor().toString().replaceAll('-', '')} days ";
+
+                    return ProductsCard(
+                      image: products!["image"].toString(),
+                      name: products["name"].toString(),
+                      description: products["description"].toString(),
+                      price: products["price"].toString(),
+                      countDate: duration,
+                      tap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/sellDetails',
+                          arguments: {
+                            'img': products["image"].toString(),
+                            'name': products["name"].toString(),
+                            'description': products["description"].toString(),
+                            'priceimg': products["price"].toString(),
+                            'check': false,
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
+              );
+            }
+            return const Text("No widget to build");
+          },
         ),
         const SizedBox(height: 20),
       ],

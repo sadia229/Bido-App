@@ -72,7 +72,8 @@ class AuthNotifier {
       idToken: googleAuth?.idToken,
     );
     //return await FirebaseAuth.instance.signInWithCredential(credential);
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithCredential(credential);
     print(userCredential.user?.displayName);
     if (userCredential.user!.uid.isNotEmpty) {
       final prefs = await SharedPreferences.getInstance();
@@ -86,5 +87,13 @@ class AuthNotifier {
     }
   }
 
+  signOut({context}) async {
+    await FirebaseAuth.instance.signOut();
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
+    Navigator.pushReplacement(
+      context,
+      BottomTransition(const LoginScreen()),
+    );
+  }
 }
-
