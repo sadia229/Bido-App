@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: const [
+              Text("jkjkjk"),
               Category(),
               SizedBox(height: 20),
               PostedItems(),
